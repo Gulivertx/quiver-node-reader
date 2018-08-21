@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import loadable from 'loadable-components';
-import {Switch, Route, NavLink} from 'react-router-dom';
-import Transition from 'react-transition-group/Transition';
-import {TransitionGroup, CSSTransition} from "react-transition-group";
+import React from 'react'
+import PropTypes from 'prop-types'
+import loadable from 'loadable-components'
+import {Switch, Route, NavLink} from 'react-router-dom'
+import Transition from 'react-transition-group/Transition'
+import {TransitionGroup, CSSTransition} from "react-transition-group"
 
 /** React components **/
 //const ExampleContainer = loadable(() => import('../containers/ExampleContainer'));
@@ -28,6 +28,6 @@ class App extends React.Component {
 
 App.propTypes = {
     initState: PropTypes.string.isRequired
-};
+}
 
 export default App

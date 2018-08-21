@@ -2,7 +2,7 @@
 
 const defaultState = {
     initState: 'Quiver Node Reader'
-};
+}
 
 const main = (state = defaultState, action) => {
     let stateValue = {};

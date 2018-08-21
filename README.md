@@ -22,3 +22,8 @@ To build this tool here is the following technologies which are used:
 
 *I just planify and start this project, then currently it is the begining and there still are nothing in this repository.
 I hope in few weeks there will be a first usable version, and why not, if you know some used technologies, have some help to make it great.*
+
+### How-to start developping
+* Clone git repository | *git clone https://github.com/Gulivertx/quiver-node-reader.git*
+* Install node depandencies | *yarn* or *npm install*
+* Run dev server | *yarn run dev*

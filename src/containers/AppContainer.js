@@ -7,18 +7,18 @@ const mapStateToProps = state => {
     return {
         initState: state.main.initState
     }
-};
+}
 
 const mapDispatchToProps = dispatch => {
     return {
         /** dispatch actions here **/
 
     }
-};
+}
 
 const AppContainer = withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(App));
+)(App))
 
 export default AppContainer
