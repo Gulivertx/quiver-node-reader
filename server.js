@@ -135,13 +135,13 @@ app.get('/app-info', (req, res, next) => {
     })
 })
 
-app.get('/notebooks', (req, res, next) => {
+app.get('/quiver/notebooks', (req, res, next) => {
     const notebooks = getQuiverNoteBooks();
 
     res.json(notebooks)
 })
 
-app.get('/note', (req, res, next) => {
+app.get('/quiver/note', (req, res, next) => {
     const note = getQuiverNote(req.path)
 
     res.json(note)

@@ -5,14 +5,16 @@ import App from "../components/App"
 
 const mapStateToProps = state => {
     return {
-        initState: state.main.initState
+        notebooks: state.main.notebooks,
+        isFetchingNotebooks: state.main.isFetchingNotebooks
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        /** dispatch actions here **/
-
+        fetchNotebooks: () => {
+            dispatch(actions.fetchNotebooks())
+        }
     }
 }
 

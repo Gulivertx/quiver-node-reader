@@ -1,0 +1,28 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.tags-box {
+  margin-bottom: 6px;
+}
+
+.tags {
+  margin: 2px;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.4rem;
+}
+
+.notes-list {
+  margin-top: 16px;
+
+  h6 {
+    font-size: 0.85rem;
+  }
+
+  .card {
+    margin-bottom: 12px;
+
+    .card-info {
+      margin: 6px 0 8px;
+      font-size: 0.65rem;
+    }
+  }
+}
