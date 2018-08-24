@@ -4,6 +4,7 @@ const compression = require('compression')
 //const cacheControl = require('express-cache-controller')
 const logger = require('morgan')
 const os = require('os')
+const fs = require('fs')
 
 const package = require('./package.json')
 
@@ -25,6 +26,80 @@ const getTimeString = (milli) => {
     h = h % 24; h = h < 10 ? '0' + h : h;
     ms = Math.floor((milli % 1000) * 1000) / 1000;
     return `${d}d ${h}:${m}:${s}`;
+}
+
+/**
+ * Remove duplicate entries in array
+ * @param Array array
+ * @returns {array[]}
+ */
+const removeDuplicate = array => [...new Set(array)];
+
+/**
+ * Gete Quiver Notebooks and Notes
+ * Format result as a array<JSON>
+ * @return {array}
+ */
+const getQuiverNoteBooks = () => {
+    const result = []
+    const path = 'data'; // Path of Quiver Notebooks
+
+    // Get notebooks from path
+    const notebooks = fs.readdirSync(path)
+
+    // Get notes from notebooks
+    notebooks.map(notebook => {
+        let tags = []
+
+        // Read notebooks meta.json
+        const notebookMeta = JSON.parse(fs.readFileSync(`${path}/${notebook}/meta.json`, 'utf8'))
+
+        // Read notes inside notebook
+        const notes = fs.readdirSync(`${path}/${notebook}`)
+
+        // Read notes meta.json
+        const notesObj = []
+        notes.map(note => {
+            // Do note read meta.json as a note
+            if (note === 'meta.json') return
+
+            const noteMeta = JSON.parse(fs.readFileSync(`${path}/${notebook}/${note}/meta.json`, 'utf8'))
+            notesObj.push({
+                'title': noteMeta.title,
+                'uuid': noteMeta.uuid,
+                'dir': `${path}/${notebook}/${note}`,
+                'created_at': noteMeta.created_at,
+                'updated_at': noteMeta.updated_at,
+                'tags': noteMeta.tags
+            })
+
+            // Add tags in tags array only if there is more than one
+            if (noteMeta.tags.length >0) tags = [...tags, ...noteMeta.tags]
+        })
+
+        // Format the result
+        result.push({
+            'name': notebookMeta.name,
+            'uuid': notebookMeta.uuid,
+            'dir': `${path}/${notebook}`,
+            'notes': notesObj,
+            'tags': removeDuplicate(tags.sort())
+        })
+    })
+
+    return result
+}
+
+/**
+ * Gets note by full path
+ * @param path
+ */
+const getQuiverNote = (path) => {
+    const tmp = 'data/format-z (dev).qvnotebook/102E733F-068F-494E-AABA-CD03912D2079.qvnote'
+
+    const note = fs.readdirSync(`${tmp}`)
+
+    return note
 }
 
 const app = express()
@@ -58,6 +133,18 @@ app.get('/app-info', (req, res, next) => {
 
         }
     })
+})
+
+app.get('/notebooks', (req, res, next) => {
+    const notebooks = getQuiverNoteBooks();
+
+    res.json(notebooks)
+})
+
+app.get('/note', (req, res, next) => {
+    const note = getQuiverNote(req.path)
+
+    res.json(note)
 })
 
 // catch 404 and forward to error handler

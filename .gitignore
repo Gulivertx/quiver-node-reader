@@ -63,5 +63,8 @@ typings/
 # next.js build output
 .next
 
-# APplication build
+# Application build
 app
+
+# Quiver notebooks
+data/*
