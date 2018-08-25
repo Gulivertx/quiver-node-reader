@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => {
         },
         changeSearchNoteInput: (event) => {
             dispatch(actions.changeSearchNoteInput(event))
+        },
+        changeSelectedNote: (path) => {
+            dispatch(actions.changeSelectedNote(path))
         }
     }
 }

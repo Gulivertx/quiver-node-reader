@@ -8,7 +8,7 @@ export const requestNotebooks = () => {
     return {
         type: FETCH_NOTEBOOKS_REQUEST
     }
-};
+}
 
 export const successNotebooks = (json) => {
     return {
@@ -16,7 +16,7 @@ export const successNotebooks = (json) => {
         data: json,
         receivedAt: Date.now()
     }
-};
+}
 
 export const failureNotebooks = (error) => {
     return {
@@ -24,7 +24,7 @@ export const failureNotebooks = (error) => {
         error: error,
         receivedAt: Date.now()
     }
-};
+}
 
 export const fetchNotebooks = () => {
     return (dispatch, getState) => {
@@ -41,7 +41,8 @@ export const fetchNotebooks = () => {
                 }
             )
     }
-};
+}
+
 
 export const SELECTNOTEBOOK = 'SELECTNOTEBOOK'
 
@@ -53,6 +54,7 @@ export const changeSelectedNotebook = (event) => {
     }
 }
 
+
 export const SEARCHNOTEINPUT = 'SEARCHNOTEINPUT'
 
 export const changeSearchNoteInput = (event) => {
@@ -63,5 +65,60 @@ export const changeSearchNoteInput = (event) => {
     return {
         type: SEARCHNOTEINPUT,
         value: serachTerm
+    }
+}
+
+
+export const SELECTNOTE = 'SELECTNOTE'
+
+export const changeSelectedNote = (path) => {
+    console.log('Change selected note: ', path)
+    return {
+        type: SELECTNOTE,
+        path: encodeURIComponent(path)
+    }
+}
+
+
+export const FETCH_NOTE_REQUEST = 'FETCH_NOTE_REQUEST';
+export const FETCH_NOTE_SUCCESS = 'FETCH_NOTE_SUCCESS';
+export const FETCH_NOTE_FAILURE = 'FETCH_NOTE_FAILURE';
+
+export const requestNote = () => {
+    return {
+        type: FETCH_NOTE_REQUEST
+    }
+}
+
+export const successNote = (json) => {
+    return {
+        type: FETCH_NOTE_SUCCESS,
+        data: json,
+        receivedAt: Date.now()
+    }
+}
+
+export const failureNote = (error) => {
+    return {
+        type: FETCH_NOTE_FAILURE,
+        error: error,
+        receivedAt: Date.now()
+    }
+}
+
+export const fetchNote = (path) => {
+    return (dispatch, getState) => {
+        dispatch(requestNote());
+
+        return fetch(`/quiver/note/${path}`)
+            .then(
+                response => response.json(),
+                error => dispatch(failureNote(error))
+            )
+            .then(
+                json => {
+                    dispatch(successNote(json));
+                }
+            )
     }
 }

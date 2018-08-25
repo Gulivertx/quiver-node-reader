@@ -95,11 +95,10 @@ const getQuiverNoteBooks = () => {
  * @param path
  */
 const getQuiverNote = (path) => {
-    const tmp = 'data/format-z (dev).qvnotebook/102E733F-068F-494E-AABA-CD03912D2079.qvnote'
+    const note = fs.readdirSync(path)
+    const noteContent = JSON.parse(fs.readFileSync(`${path}/content.json`, 'utf8'))
 
-    const note = fs.readdirSync(`${tmp}`)
-
-    return note
+    return noteContent
 }
 
 const app = express()
@@ -141,8 +140,8 @@ app.get('/quiver/notebooks', (req, res, next) => {
     res.json(notebooks)
 })
 
-app.get('/quiver/note', (req, res, next) => {
-    const note = getQuiverNote(req.path)
+app.get('/quiver/note/:path', (req, res, next) => {
+    const note = getQuiverNote(req.params.path)
 
     res.json(note)
 })

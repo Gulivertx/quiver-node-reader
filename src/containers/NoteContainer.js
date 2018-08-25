@@ -4,13 +4,17 @@ import Note from "../components/Note"
 
 const mapStateToProps = state => {
     return {
-
+        selectedNote: state.main.selectedNote,
+        isFetchingNote: state.main.isFetchingNote,
+        note: state.main.note
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        fetchNote: (path) => {
+            dispatch(actions.fetchNote(path))
+        }
     }
 }
 

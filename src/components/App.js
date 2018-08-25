@@ -31,7 +31,6 @@ class App extends React.Component {
                     <Route path='/note' component={NoteContainer} />
                 </Switch>
             )
-
         )
     }
 }
