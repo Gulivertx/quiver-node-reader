@@ -93,10 +93,16 @@ const getQuiverNoteBooks = () => {
 /**
  * Gets note by full path
  * @param path
+ * @returns {}
  */
 const getQuiverNote = (path) => {
     const noteMeta = JSON.parse(fs.readFileSync(`${path}/meta.json`, 'utf8')) // TODO: already inside React APP, should not be re-read here
-    const noteContent = JSON.parse(fs.readFileSync(`${path}/content.json`, 'utf8'))
+
+    // Replace Quiver images URL by real image path
+    let noteStr = fs.readFileSync(`${path}/content.json`, 'utf8')
+    noteStr = noteStr.replace(/quiver-image-url/g, `${path}/resources`)
+
+    const noteContent = JSON.parse(noteStr)
 
     return {
         title: noteMeta.title,
@@ -114,6 +120,7 @@ app.use(compression())
 app.use(cors())
 app.use(logger(node_env === 'production' ? 'combined':'dev'))
 app.use(express.static('app'))
+app.use('/data', express.static('data'))
 
 app.get('/', (req, res, next) => {
     res.send('Hello Quiver Node Note')
