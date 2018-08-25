@@ -82,7 +82,7 @@ const getQuiverNoteBooks = () => {
             'name': notebookMeta.name,
             'uuid': notebookMeta.uuid,
             'dir': `${path}/${notebook}`,
-            'notes': notesObj,
+            'notes': notesObj.sort((a, b) => a.title.localeCompare(b.title)),
             'tags': removeDuplicate(tags.sort())
         })
     })
@@ -111,7 +111,7 @@ app.use(logger(node_env === 'production' ? 'combined':'dev'))
 app.use(express.static('app'))
 
 app.get('/', (req, res, next) => {
-    res.send('Hello Quiver Node Reader')
+    res.send('Hello Quiver Node Note')
 })
 
 app.get('/app-info', (req, res, next) => {

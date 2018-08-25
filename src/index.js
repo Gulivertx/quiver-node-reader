@@ -22,7 +22,7 @@ render(
     <Provider store={store}>
         <MemoryRouter
             //initialEntries={[ '/dashboard', 'netatmo', '/calendar', '/webcams', '/settings', 'welcome', 'login-cbscreen', 'login-netatmo' ]}
-            initialEntries={[ '/' ]}
+            initialEntries={[ '/', 'reader' ]}
             initialIndex={0}>
             <AppContainer />
         </MemoryRouter>

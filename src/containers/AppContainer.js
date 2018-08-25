@@ -5,7 +5,6 @@ import App from "../components/App"
 
 const mapStateToProps = state => {
     return {
-        notebooks: state.main.notebooks,
         isFetchingNotebooks: state.main.isFetchingNotebooks
     }
 }

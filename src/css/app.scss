@@ -1,13 +1,14 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 .tags-box {
-  margin-bottom: 6px;
+  margin-bottom: 0.6rem;
 }
 
 .tags {
   margin: 2px;
-  font-size: 0.65rem;
-  padding: 0.2rem 0.4rem;
+  font-size: 0.6rem;
+  padding: 0.1rem 0.4rem;
+  line-height: 1;
 }
 
 .notes-list {
@@ -20,9 +21,17 @@
   .card {
     margin-bottom: 12px;
 
+    .card-title {
+      margin-bottom: 0.1rem;
+    }
+
     .card-info {
       margin: 6px 0 8px;
       font-size: 0.65rem;
+    }
+
+    .tags-list {
+      margin-bottom: 0.8rem;
     }
   }
 }

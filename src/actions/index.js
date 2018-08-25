@@ -42,3 +42,26 @@ export const fetchNotebooks = () => {
             )
     }
 };
+
+export const SELECTNOTEBOOK = 'SELECTNOTEBOOK'
+
+export const changeSelectedNotebook = (event) => {
+    console.log('Change selected notebook: ', event.target.value)
+    return {
+        type: SELECTNOTEBOOK,
+        index: event.target.value
+    }
+}
+
+export const SEARCHNOTEINPUT = 'SEARCHNOTEINPUT'
+
+export const changeSearchNoteInput = (event) => {
+    console.log('Change search note input: ', event.target.value)
+    let serachTerm = event.target.value.toLowerCase() // Lower case
+    serachTerm = serachTerm.normalize('NFD').replace(/[\u0300-\u036f]/g, "") // Remove accents
+
+    return {
+        type: SEARCHNOTEINPUT,
+        value: serachTerm
+    }
+}
