@@ -95,10 +95,16 @@ const getQuiverNoteBooks = () => {
  * @param path
  */
 const getQuiverNote = (path) => {
-    const note = fs.readdirSync(path)
+    const noteMeta = JSON.parse(fs.readFileSync(`${path}/meta.json`, 'utf8')) // TODO: already inside React APP, should not be re-read here
     const noteContent = JSON.parse(fs.readFileSync(`${path}/content.json`, 'utf8'))
 
-    return noteContent
+    return {
+        title: noteMeta.title,
+        tags: noteMeta.tags,
+        created_at: noteMeta.created_at,
+        updated_at: noteMeta.updated_at,
+        cells: noteContent.cells
+    }
 }
 
 const app = express()

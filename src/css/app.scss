@@ -1,4 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~highlight.js/styles/atom-one-dark.css";
 
 .tags-box {
   margin-bottom: 0.6rem;
@@ -25,13 +26,13 @@
       margin-bottom: 0.1rem;
     }
 
-    .card-info {
-      margin: 6px 0 8px;
-      font-size: 0.65rem;
-    }
-
     .tags-list {
       margin-bottom: 0.8rem;
     }
   }
+}
+
+.note-info {
+  margin: 6px 0 8px;
+  font-size: 0.65rem;
 }

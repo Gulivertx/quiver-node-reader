@@ -16,7 +16,13 @@ const defaultState = {
     searchNoteInput: '',
     selectedNote: '',
     isFetchingNote: false,
-    note: {}
+    note: {
+        title: '',
+        tags: [],
+        created_at: 0,
+        updated_at: 0,
+        cells: []
+    }
 }
 
 const main = (state = defaultState, action) => {

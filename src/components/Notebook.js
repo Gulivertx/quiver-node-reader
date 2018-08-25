@@ -64,7 +64,7 @@ const Notebook = (props) => {
                                                         note.tags.map((tag, index) => <button key={index} type='button' className='btn btn-info btn-sm tags text-uppercase'>{tag}</button>)
                                                     }
                                                 </div>
-                                                <div className='card-info text-muted'>
+                                                <div className='note-info text-muted'>
                                                     Created at: {moment.unix(note.created_at).format('DD.MM.YYYY - HH:mm')}<br/>
                                                     Updated at: {moment.unix(note.updated_at).format('DD.MM.YYYY - HH:mm')}
                                                 </div>
