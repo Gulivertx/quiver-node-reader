@@ -12,9 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchNote: (path) => {
-            dispatch(actions.fetchNote(path))
-        }
+
     }
 }
 

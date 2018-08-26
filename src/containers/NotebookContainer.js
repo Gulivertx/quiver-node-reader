@@ -6,20 +6,21 @@ const mapStateToProps = state => {
     return {
         notebooks: state.main.notebooks,
         selectedNotebook: state.main.selectedNotebook,
-        searchNoteInput: state.main.searchNoteInput
+        searchNoteInput: state.main.searchNoteInput,
+        selectedNote: state.main.selectedNote
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeSelectedNotebook: (event) => {
-            dispatch(actions.changeSelectedNotebook(event))
-        },
         changeSearchNoteInput: (event) => {
             dispatch(actions.changeSearchNoteInput(event))
         },
-        changeSelectedNote: (path) => {
-            dispatch(actions.changeSelectedNote(path))
+        changeSelectedNote: (uuid) => {
+            dispatch(actions.changeSelectedNote(uuid))
+        },
+        fetchNote: (path) => {
+            dispatch(actions.fetchNote(path))
         }
     }
 }

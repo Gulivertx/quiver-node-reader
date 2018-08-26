@@ -1,6 +1,6 @@
 {
   "name": "quiver-node-reader",
-  "version": "0.0.1",
+  "version": "0.5.0",
   "description": "Quiver Notebook reader powered by NodeJS",
   "repository": "https://github.com/Gulivertx/quiver-node-reader.git",
   "author": {
@@ -10,7 +10,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "dev": "concurrently -k \"webpack --watch --mode development\" \"ENV=development node server.js\"",
     "build": "rm -Rf app && webpack --config build/webpack.prod.js --progress --profile --bail -p --mode production",
     "analyse": "rm -Rf app && NODE_ENV=analyse webpack --config build/webpack.prod.js --mode production"
@@ -56,6 +56,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-transition-group": "^2.4.0",
+    "reboot.css": "^1.0.4",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",

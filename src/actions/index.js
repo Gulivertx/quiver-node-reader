@@ -1,8 +1,8 @@
 import fetch from 'cross-fetch'
 
-export const FETCH_NOTEBOOKS_REQUEST = 'FETCH_NOTEBOOKS_REQUEST';
-export const FETCH_NOTEBOOKS_SUCCESS = 'FETCH_NOTEBOOKS_SUCCESS';
-export const FETCH_NOTEBOOKS_FAILURE = 'FETCH_NOTEBOOKS_FAILURE';
+export const FETCH_NOTEBOOKS_REQUEST = 'FETCH_NOTEBOOKS_REQUEST'
+export const FETCH_NOTEBOOKS_SUCCESS = 'FETCH_NOTEBOOKS_SUCCESS'
+export const FETCH_NOTEBOOKS_FAILURE = 'FETCH_NOTEBOOKS_FAILURE'
 
 export const requestNotebooks = () => {
     return {
@@ -37,6 +37,7 @@ export const fetchNotebooks = () => {
             )
             .then(
                 json => {
+                    if (json.status == 'error') return dispatch(failureNote(json.msg))
                     dispatch(successNotebooks(json));
                 }
             )
@@ -46,11 +47,11 @@ export const fetchNotebooks = () => {
 
 export const SELECTNOTEBOOK = 'SELECTNOTEBOOK'
 
-export const changeSelectedNotebook = (event) => {
-    console.log('Change selected notebook: ', event.target.value)
+export const changeSelectedNotebook = (index) => {
+    console.log('Change selected notebook: ', index)
     return {
         type: SELECTNOTEBOOK,
-        index: event.target.value
+        index: index
     }
 }
 
@@ -71,18 +72,18 @@ export const changeSearchNoteInput = (event) => {
 
 export const SELECTNOTE = 'SELECTNOTE'
 
-export const changeSelectedNote = (path) => {
-    console.log('Change selected note: ', path)
+export const changeSelectedNote = (uuid) => {
+    console.log('Change selected note: ', uuid)
     return {
         type: SELECTNOTE,
-        path: encodeURIComponent(path)
+        uuid: uuid
     }
 }
 
 
-export const FETCH_NOTE_REQUEST = 'FETCH_NOTE_REQUEST';
-export const FETCH_NOTE_SUCCESS = 'FETCH_NOTE_SUCCESS';
-export const FETCH_NOTE_FAILURE = 'FETCH_NOTE_FAILURE';
+export const FETCH_NOTE_REQUEST = 'FETCH_NOTE_REQUEST'
+export const FETCH_NOTE_SUCCESS = 'FETCH_NOTE_SUCCESS'
+export const FETCH_NOTE_FAILURE = 'FETCH_NOTE_FAILURE'
 
 export const requestNote = () => {
     return {
@@ -117,7 +118,53 @@ export const fetchNote = (path) => {
             )
             .then(
                 json => {
+                    if (json.status == 'error') return dispatch(failureNote(json.msg))
                     dispatch(successNote(json));
+                }
+            )
+    }
+}
+
+
+export const FETCH_APPINFO_REQUEST = 'FETCH_APPINFO_REQUEST'
+export const FETCH_APPINFO_SUCCESS = 'FETCH_APPINFO_SUCCESS'
+export const FETCH_APPINFO_FAILURE = 'FETCH_APPINFO_FAILURE'
+
+export const requestAppInfo = () => {
+    return {
+        type: FETCH_APPINFO_REQUEST
+    }
+}
+
+export const successAppInfo = (json) => {
+    return {
+        type: FETCH_APPINFO_SUCCESS,
+        data: json,
+        receivedAt: Date.now()
+    }
+}
+
+export const failureAppInfo = (error) => {
+    return {
+        type: FETCH_APPINFO_FAILURE,
+        error: error,
+        receivedAt: Date.now()
+    }
+}
+
+export const fetchAppInfo = () => {
+    return (dispatch, getState) => {
+        dispatch(requestAppInfo());
+
+        return fetch(`/app-info`)
+            .then(
+                response => response.json(),
+                error => dispatch(failureAppInfo(error))
+            )
+            .then(
+                json => {
+                    if (json.status == 'error') return dispatch(failureAppInfo(json.msg))
+                    dispatch(successAppInfo(json));
                 }
             )
     }

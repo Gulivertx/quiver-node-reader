@@ -1,5 +1,4 @@
 import {connect} from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import * as actions from '../actions'
 import App from "../components/App"
 
@@ -13,13 +12,16 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchNotebooks: () => {
             dispatch(actions.fetchNotebooks())
+        },
+        fetchAppInfo: () => {
+            dispatch(actions.fetchAppInfo())
         }
     }
 }
 
-const AppContainer = withRouter(connect(
+const AppContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(App))
+)(App)
 
 export default AppContainer

@@ -1,5 +1,5 @@
 # quiver-node-reader
-This app will be a reader for notes created from [Quiver Notebook](http://happenapps.com/).
+This app will be a reader for notes created from [Quiver NotebooksTags](http://happenapps.com/).
 The goal of this project is to create an Express WEB server which will serve the notes directly from original files inside Quiver notes (example.qvnotebook).
 
 ### Main goal

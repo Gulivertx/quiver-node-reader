@@ -1,5 +1,6 @@
 /** Import from actions here **/
 import {
+    FETCH_APPINFO_FAILURE, FETCH_APPINFO_REQUEST, FETCH_APPINFO_SUCCESS,
     FETCH_NOTE_FAILURE,
     FETCH_NOTE_REQUEST, FETCH_NOTE_SUCCESS,
     FETCH_NOTEBOOKS_FAILURE,
@@ -12,7 +13,7 @@ import {
 const defaultState = {
     isFetchingNotebooks: true,
     notebooks: [],
-    selectedNotebook: '0',
+    selectedNotebook: 0,
     searchNoteInput: '',
     selectedNote: '',
     isFetchingNote: false,
@@ -22,7 +23,9 @@ const defaultState = {
         created_at: 0,
         updated_at: 0,
         cells: []
-    }
+    },
+    isFetchingAppInfo: true,
+    appInfo: {}
 }
 
 const main = (state = defaultState, action) => {
@@ -56,7 +59,7 @@ const main = (state = defaultState, action) => {
             break;
 
         case SELECTNOTE:
-            stateValue.selectedNote = action.path;
+            stateValue.selectedNote = action.uuid;
             state = Object.assign({}, state, stateValue);
             break;
 
@@ -73,6 +76,22 @@ const main = (state = defaultState, action) => {
 
         case FETCH_NOTE_FAILURE:
             stateValue.isFetchingNote = false;
+            state = Object.assign({}, state, stateValue);
+            break;
+
+        case FETCH_APPINFO_REQUEST:
+            stateValue.isFetchingAppInfo = true;
+            state = Object.assign({}, state, stateValue);
+            break;
+
+        case FETCH_APPINFO_SUCCESS:
+            stateValue.isFetchingAppInfo = false;
+            stateValue.appInfo = action.data;
+            state = Object.assign({}, state, stateValue);
+            break;
+
+        case FETCH_APPINFO_FAILURE:
+            stateValue.isFetchingAppInfo = false;
             state = Object.assign({}, state, stateValue);
             break;
 

@@ -1,0 +1,30 @@
+html,body {
+  height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  //padding: 10px 15px;
+
+  .col-notebooks-tags {
+    flex: 0 0 $col-notebooks-tags-width;
+    padding: 10px;
+    user-select: none;
+  }
+
+  .col-notes {
+    flex: 0 0 $col-notes-width;
+    padding: 10px;
+    border-left: 1px solid $col-border-color;
+    user-select: none;
+  }
+
+  .col-content-reader {
+    flex: 1;
+    background: #404552;
+    padding: 10px 15px;
+    border-left: 1px solid $col-border-color;
+  }
+}

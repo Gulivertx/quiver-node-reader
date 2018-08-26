@@ -132,7 +132,8 @@ app.get('/app-info', (req, res, next) => {
         description: package.description,
         version: package.version,
         author: package.author,
-        process: {
+        repository: package.repository,
+        os: {
             platform: os.platform(),
             arch: os.arch(),
             release: os.release(),
@@ -164,6 +165,6 @@ app.use((req, res, next) => {
     res.status(404).json({status: 'error', msg: 'Not found', url: req.url})
 })
 
-app.listen(3000, () => {
+app.listen(node_env === 'production' ? 8080 : 3000, () => {
     if (node_env === 'development') console.log('Server running on http://localhost:3000')
 })
