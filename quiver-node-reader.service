@@ -1,0 +1,15 @@
+### SystemD service for user
+### Copy this script in your ~/.config/systemd/user
+### Modify the pass of your project folder in line 10
+### Run the script with the command : systemctl --user start quiver-node-reader
+
+[Unit]
+Description=Quiver Node Reader Express server
+
+[Service]
+ExecStart=/bin/bash -c "cd ~/Projects/quiver-node-reader && /usr/bin/yarn start"
+Restart=always
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
