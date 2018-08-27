@@ -2,10 +2,13 @@
 This app is a reader for notes created from [Quiver Notebook](http://happenapps.com/) application.
 The goal of this project is to create an Express WEB server which serve original notebooks (qvnotebook) and notes (qvnote) without exporting them.
 
+![screenshot](https://raw.githubusercontent.com/Gulivertx/quiver-node-reader/master/screenshots/screenshot_01.png)
+
 ### Main goal
 * Read notes from [QVNOTEBOOK](https://github.com/HappenApps/Quiver/wiki/Quiver-Data-Format)
 * Create a filterable list of all notes by notebook
 * Create a list of all tags to have quick access of notes by tag
+* Code highlighting
 
 ### Motivation
 As a WEB developer I'm mainly working on MacOS and using Quiver with my all team mates.
@@ -25,9 +28,14 @@ Just clone the repository, install node dependancies, build the React app and st
 * yarn *or* npm install
 * yarn run dev *or* npm run dev
 
-The command *dev* will start express server on https://localhost:3000 and also build the React app. It will also keep wathing changes in the React app files.
+The command *dev* will start express server on https://localhost:3000 and also build the React app. It will also keep watching changes in the React app files.
 
-### Information
-I just started this project few days ago, it is not finish and will grew up the next few days.
-The current status allow to start the server and have a list of all notebooks, notes, tags, select a note and read it.
-My current focus will now be to improve UI.
+### How-to use only?
+NodeJS is needed then first install it if it is not. Then:
+* **git clone https://github.com/Gulivertx/quiver-node-reader.git**
+* **cd quiver-node-reader** move to quiver-node-reader directory
+* **yarn install --production** *or* **npm install --production** this command will install only production dependancies
+* **yarn run build** or **npm run build** this command will build app
+* **yarn start** or **npm start** start the web server on http://localhost:8080
+
+If you want an auto-run on each boot you will find a SystemD script, please read the comment inside this script for using it.
