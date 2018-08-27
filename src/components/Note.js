@@ -8,7 +8,7 @@ import Highlight from 'react-highlight'
 
 const Note = (props) => {
 
-    const {isFetchingNote, note} = props
+    const {isFetchingNote, note, changeSelectedTag} = props
 
     return (
         note.title === '' ? (
@@ -21,7 +21,7 @@ const Note = (props) => {
                     <section className='sub-header'>
                         <h2 className='text-uppercase'>{note.title}</h2>
                         {
-                            note.tags.map((tag, index) => <button key={index} type='button' className='btn btn-info btn-sm tags text-uppercase'>{tag}</button>)
+                            note.tags.map((tag, index) => <button key={index} type='button' className='btn btn-info btn-sm tags text-uppercase' onClick={() => changeSelectedTag(tag)}>{tag}</button>)
                         }
                         <div className='mt-2 small text-muted'>
                             Created at: {moment.unix(note.created_at).format('DD.MM.YYYY - HH:mm')} - Updated at: {moment.unix(note.updated_at).format('DD.MM.YYYY - HH:mm')}
@@ -56,7 +56,8 @@ const Note = (props) => {
 Note.propTypes = {
     selectedNote: PropTypes.string.isRequired,
     isFetchingNote: PropTypes.bool.isRequired,
-    note: PropTypes.object.isRequired
+    note: PropTypes.object.isRequired,
+    changeSelectedTag: PropTypes.func.isRequired
 }
 
 export default Note

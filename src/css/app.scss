@@ -104,6 +104,11 @@ $input-focus-box-shadow: none;
   }
 }
 
+pre code {
+  word-wrap: normal;
+  white-space: pre;
+}
+
 
 /** SCROLLBAR **/
 .scrollbar-container-notebooks {
@@ -139,3 +144,24 @@ $input-focus-box-shadow: none;
 #reader::-webkit-scrollbar-track {
   background-color: $background-color-3;
 }
+
+
+/** Icons **/
+/*.ico {
+  display: block;
+  text-indent: -9999px;
+  width: 24px;
+  height: 24px;
+}
+
+.ico-library {
+  background: url(../img/library_books.svg);
+  background-size: 24px 24px;
+  fill: $text-color-1;
+}
+
+.ico-note {
+  background: url(../img/note.svg);
+  background-size: 24px 24px;
+  fill: $text-color-1;
+}*/

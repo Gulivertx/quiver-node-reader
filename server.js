@@ -44,6 +44,13 @@ const getQuiverNoteBooks = () => {
     const result = []
     const path = 'data'; // Path of Quiver Notebooks
 
+    // Create a All notes notebook
+    result.push({
+        'name': 'All notes',
+        'notes': [],
+        'tags': []
+    })
+
     // Get notebooks from path
     const notebooks = fs.readdirSync(path)
 
@@ -85,6 +92,12 @@ const getQuiverNoteBooks = () => {
             'notes': notesObj.sort((a, b) => a.title.localeCompare(b.title)),
             'tags': removeDuplicate(tags.sort())
         })
+
+        // Push notes and tags in All notes notebook
+        result[0].notes = [...result[0].notes, ...notesObj]
+        result[0].notes = result[0].notes.sort((a, b) => a.title.localeCompare(b.title))
+        result[0].tags = [...result[0].tags, ...tags]
+        result[0].tags = removeDuplicate(result[0].tags.sort())
     })
 
     return result
@@ -98,7 +111,7 @@ const getQuiverNoteBooks = () => {
 const getQuiverNote = (path) => {
     const noteMeta = JSON.parse(fs.readFileSync(`${path}/meta.json`, 'utf8')) // TODO: already inside React APP, should not be re-read here
 
-    // Replace Quiver images URL by real image path
+    // Replace Quiver img URL by real image path
     let noteStr = fs.readFileSync(`${path}/content.json`, 'utf8')
     noteStr = noteStr.replace(/quiver-image-url/g, `${path}/resources`)
 

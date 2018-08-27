@@ -12,7 +12,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        changeSelectedTag: (tag) => {
+            dispatch(actions.changeSelectedTag(tag))
+        }
     }
 }
 

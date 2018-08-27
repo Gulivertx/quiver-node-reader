@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
     return {
         changeSelectedNotebook: (event) => {
             dispatch(actions.changeSelectedNotebook(event))
+        },
+        changeSelectedTag: (tag) => {
+            dispatch(actions.changeSelectedTag(tag))
         }
     }
 }

@@ -7,7 +7,7 @@ import {
     FETCH_NOTEBOOKS_REQUEST,
     FETCH_NOTEBOOKS_SUCCESS,
     SEARCHNOTEINPUT, SELECTNOTE,
-    SELECTNOTEBOOK
+    SELECTNOTEBOOK, SELECTTAG
 } from "../actions";
 
 const defaultState = {
@@ -25,7 +25,8 @@ const defaultState = {
         cells: []
     },
     isFetchingAppInfo: true,
-    appInfo: {}
+    appInfo: {},
+    selectedTag: ''
 }
 
 const main = (state = defaultState, action) => {
@@ -50,6 +51,7 @@ const main = (state = defaultState, action) => {
 
         case SELECTNOTEBOOK:
             stateValue.selectedNotebook = action.index;
+            stateValue.searchNoteInput = ''; // Reset search input when notebook change
             state = Object.assign({}, state, stateValue);
             break;
 
@@ -92,6 +94,11 @@ const main = (state = defaultState, action) => {
 
         case FETCH_APPINFO_FAILURE:
             stateValue.isFetchingAppInfo = false;
+            state = Object.assign({}, state, stateValue);
+            break;
+
+        case SELECTTAG:
+            stateValue.selectedTag = action.tag;
             state = Object.assign({}, state, stateValue);
             break;
 

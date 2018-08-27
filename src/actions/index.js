@@ -169,3 +169,13 @@ export const fetchAppInfo = () => {
             )
     }
 }
+
+
+export const SELECTTAG = 'SELECTTAG'
+
+export const changeSelectedTag = (tag) => {
+    return {
+        type: SELECTTAG,
+        tag: tag
+    }
+}

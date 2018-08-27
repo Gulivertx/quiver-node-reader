@@ -6,7 +6,7 @@ import 'moment/locale/fr-ch'
 moment.locale('fr-ch')
 
 const NotebooksTags = (props) => {
-    const {notebooks, selectedNotebook, changeSearchNoteInput, searchNoteInput, changeSelectedNote, fetchNote, selectedNote} = props
+    const {notebooks, selectedNotebook, changeSearchNoteInput, searchNoteInput, changeSelectedNote, fetchNote, selectedNote, selectedTag, changeSelectedTag} = props
 
     const linkOnClick = (path, uuid) => {
         changeSelectedNote(uuid)
@@ -16,10 +16,19 @@ const NotebooksTags = (props) => {
     return (
         <div style={{maxHeight: '100%', height: '100%'}}>
             <section className='sub-header'>
-                <h5 className='text-uppercase text-center'>{notebooks[selectedNotebook].name} <small className='text-muted'>{notebooks[selectedNotebook].notes.length} notes</small></h5>
+                <h5 className='text-uppercase text-center'>
+                    {notebooks[selectedNotebook].name + ' '}
+                    <small className='text-muted'>
+                        {
+                            notebooks[selectedNotebook].notes.length} notes{selectedTag ? (
+                                <button type="button" className='btn btn-info btn-sm tags text-uppercase ml-2' onClick={() => changeSelectedTag('')}>{selectedTag}</button>
+                            ) : (null)
+                        }
+                    </small>
+                </h5>
                 <div className='form-group'>
                     <label className='input-group-sm w-100'>
-                        <input type='search' className='form-control input-sm' placeholder='Search...' onChange={changeSearchNoteInput}/>
+                        <input type='search' className='form-control input-sm' placeholder='Search...' value={searchNoteInput} onChange={changeSearchNoteInput}/>
                     </label>
                 </div>
             </section>
@@ -32,6 +41,9 @@ const NotebooksTags = (props) => {
                             title = title.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
                             return searchNoteInput === '' || title.includes(searchNoteInput)
                         })
+                            .filter(note => {
+                                return selectedTag === '' || note.tags.includes(selectedTag)
+                            })
                             .map((note, index) => {
                                 return (
                                     <li
@@ -57,7 +69,9 @@ NotebooksTags.propTypes = {
     searchNoteInput: PropTypes.string.isRequired,
     changeSelectedNote: PropTypes.func.isRequired,
     fetchNote: PropTypes.func.isRequired,
-    selectedNote: PropTypes.string.isRequired
+    selectedNote: PropTypes.string.isRequired,
+    selectedTag: PropTypes.string.isRequired,
+    changeSelectedTag: PropTypes.func.isRequired
 }
 
 export default NotebooksTags

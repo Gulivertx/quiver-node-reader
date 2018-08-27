@@ -7,7 +7,8 @@ const mapStateToProps = state => {
         notebooks: state.main.notebooks,
         selectedNotebook: state.main.selectedNotebook,
         searchNoteInput: state.main.searchNoteInput,
-        selectedNote: state.main.selectedNote
+        selectedNote: state.main.selectedNote,
+        selectedTag: state.main.selectedTag
     }
 }
 
@@ -21,6 +22,9 @@ const mapDispatchToProps = dispatch => {
         },
         fetchNote: (path) => {
             dispatch(actions.fetchNote(path))
+        },
+        changeSelectedTag: (tag) => {
+            dispatch(actions.changeSelectedTag(tag))
         }
     }
 }
