@@ -36,6 +36,7 @@ NodeJS is needed then first install it if it is not. Then:
 * **cd quiver-node-reader** move to quiver-node-reader directory
 * **yarn install --production** *or* **npm install --production** this command will install only production dependancies
 * **yarn run build** or **npm run build** this command will build app
+* Create a new directory **data** in the root of the project and copy your Quiver notebooks
 * **yarn start** or **npm start** start the web server on http://localhost:8080
 
 If you want an auto-run on each boot you will find a SystemD script, please read the comment inside this script for using it.
