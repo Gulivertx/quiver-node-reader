@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import {MemoryRouter} from 'react-router-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
@@ -20,12 +19,7 @@ const store = createStore(
 
 render(
     <Provider store={store}>
-        <MemoryRouter
-            //initialEntries={[ '/dashboard', 'netatmo', '/calendar', '/webcams', '/settings', 'welcome', 'login-cbscreen', 'login-netatmo' ]}
-            initialEntries={[ '/', 'reader' ]}
-            initialIndex={0}>
-            <AppContainer />
-        </MemoryRouter>
+        <AppContainer />
     </Provider>,
     document.getElementById('app-root')
 )

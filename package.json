@@ -1,6 +1,6 @@
 {
   "name": "quiver-node-reader",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Quiver Notebook reader powered by NodeJS",
   "repository": "https://github.com/Gulivertx/quiver-node-reader.git",
   "author": {

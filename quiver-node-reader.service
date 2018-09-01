@@ -1,6 +1,6 @@
 ### SystemD service for user
 ### Copy this script in your ~/.config/systemd/user
-### Modify the pass of your project folder in line 10
+### Modify the path of your project folder in line 10 and also adapt yarn or npm path
 ### Run the script with the command : systemctl --user start quiver-node-reader
 
 [Unit]

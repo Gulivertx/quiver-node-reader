@@ -52,6 +52,7 @@ const main = (state = defaultState, action) => {
         case SELECTNOTEBOOK:
             stateValue.selectedNotebook = action.index;
             stateValue.searchNoteInput = ''; // Reset search input when notebook change
+            stateValue.selectedTag = ''; // Reset tag selected when notebook change
             state = Object.assign({}, state, stateValue);
             break;
 

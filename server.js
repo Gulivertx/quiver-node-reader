@@ -44,7 +44,7 @@ const getQuiverNoteBooks = () => {
     const result = []
     const path = 'data'; // Path of Quiver Notebooks
 
-    // Create a All notes notebook
+    // Create a All notes notebook where we will push all notes and tag from the whole notebooks
     result.push({
         'name': 'All notes',
         'notes': [],
@@ -56,6 +56,9 @@ const getQuiverNoteBooks = () => {
 
     // Get notes from notebooks
     notebooks.map(notebook => {
+        // Return if object is not a notebook
+        if (!notebook.includes('qvnotebook')) return
+
         let tags = []
 
         // Read notebooks meta.json
@@ -67,8 +70,8 @@ const getQuiverNoteBooks = () => {
         // Read notes meta.json
         const notesObj = []
         notes.map(note => {
-            // Do note read meta.json as a note
-            if (note === 'meta.json') return
+            /// Return if object is not a note
+            if (!note.includes('qvnote')) return
 
             const noteMeta = JSON.parse(fs.readFileSync(`${path}/${notebook}/${note}/meta.json`, 'utf8'))
             notesObj.push({
